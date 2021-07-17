@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+
+   <!-- css -->
+   <link href="//db.onlinewebfonts.com/c/223f224650510797e0f06233d2a0f97b?family=DS-Digital" rel="stylesheet" type="text/css"/>
+   <!-- Latest compiled and minified CSS -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+   <!-- Optional theme -->
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+   <!-- Latest compiled and minified JavaScript -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+      <div class="main">
+         <p class="title digital">DIGITAL CLOCK</p>
+         <p class="subtitle digital">DEVELOPER REZWAN</p>
+         <div class="clock">
+            <h1 class="digital green"><span id="hour" class="border_rounded"></span> : <span id="min" class="border_rounded"></span> : <span id="sec" class="border_rounded"></span> </h1>
+            <p class="digital am_pm" id="am_pm"></p>
+         </div>
+      </div>
+</body>
+<script>
+   const hour = document.getElementById("hour");
+   const min = document.getElementById("min");
+   const sec = document.getElementById("sec");
+   const am_pm = document.getElementById("am_pm");
+   function insert_html(value, component){
+      component.innerHTML = value;
+   }
+   function clock() {
+      const time = new Date();
+      var  h = time.getHours();
+      var  m  = time.getMinutes();
+      var s =  time.getSeconds();
+
+      h = (h < 10) ? '0'+h : h;
+      m = (m < 10) ? '0'+m : m;
+      s = (s < 10) ? '0'+s : s;
+
+      if (h > 12) {
+         h = h - 12;
+         insert_html('PM', am_pm);
+      }else{
+         insert_html('AM', am_pm);
+      }
+
+      insert_html(h, hour);
+      insert_html(m, min);
+      insert_html(s, sec);
+
+      setInterval(() => {
+         clock();
+      }, 1000);
+   }
+   clock();
+</script>
+</html>
